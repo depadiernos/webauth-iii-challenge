@@ -7,14 +7,14 @@ const protectedRoute = () => (req, res, next) => {
   if (!token) {
     res.status(401).json(notAllowed)
   }
-  jwt.verify(token, jwtSecret, (err, { id, email, username }) => {
+  jwt.verify(token, jwtSecret, (err, { sub, username, department }) => {
     if (err) {
       res.status(401).json(notAllowed)
     } else {
       req.user = {
-        id,
-        email,
-        username
+        id: sub,
+        username,
+        department
       }
     }
   })
