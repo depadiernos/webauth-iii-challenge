@@ -1,0 +1,23 @@
+POST http://localhost:4000/api/register
+content-type: application/json
+
+{
+    "username": "Me",
+    "password": "password123",
+    "department": "admin"
+}
+
+###
+
+POST http://localhost:4000/api/login
+content-type: application/json
+
+{
+    "username": "Me",
+    "password": "password123"
+}
+
+###
+
+GET http://localhost:4000/api/users
+Content-Type: application/json
