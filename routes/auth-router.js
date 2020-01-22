@@ -39,7 +39,10 @@ router.post("/login", async (req, res, next) => {
 
     if (user && validatePassword) {
       const token = generateToken(user)
-      res.status(200).json({ message: `It's dangerous to go alone, ${user.username}. Take this token.` })
+      res.status(200).json({
+        message: `It's dangerous to go alone, ${user.username}. Take this token.`,
+        token
+      })
     } else {
       res.status(401).json({ massage: "You shall not pass!" })
     }
