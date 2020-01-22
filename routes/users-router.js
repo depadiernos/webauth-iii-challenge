@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get("/", async (req, res, next) => {
   try {
-    const users = await usersModel.find(req.user.department)
+    const users = await usersModel.find({ department: req.user.department })
     res.json(users)
   } catch (err) {
     next(err)
