@@ -7,6 +7,12 @@ const find = (filter) => {
     .select("id", "username", "department")
 }
 
+const findBy = (filter) => {
+  return db("users")
+    .where(filter)
+    .select(["id", "username", "password", "department"])
+}
+
 const findById = (id) => {
   return db("users")
     .where({ id })
@@ -27,3 +33,5 @@ const verifyUser = async (user) => {
     return false
   }
 }
+
+module.exports = { find, findBy, findById, add, verifyUser }
