@@ -9,15 +9,15 @@ const server = express()
 const port = process.env.PORT || 4000
 
 server.use(helmet())
-server.use(
-  cors({
-    credentials: true,
-    origin: "http://localhost:3000"
-  })
-)
+server.use(cors({ credentials: true, origin: "http://localhost:3000" }))
+server.use(express.json())
 
-server.use("api/users", protectedRoute(), usersRouter)
-server.use("api/", authRouter)
+server.use("/api", authRouter)
+server.use("/api/users", protectedRoute(), usersRouter)
+
+server.get("/", (req, res, next) => {
+  res.json({ message: "The API is working" })
+})
 
 server.use((err, req, res, next) => {
   console.log(err)
